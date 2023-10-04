@@ -1,0 +1,76 @@
+.login_page {
+  display: flex;
+}
+
+.login_page_left {
+  width: 50%;
+  height: 100svh;
+  background-color: var(--primaryColor1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login_page_left div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.login_page_left h1 {
+  font-family: "Passero One";
+  font-size: 96px;
+  color: white;
+}
+.login_page_left span {
+  font-size: 24px;
+  color: white;
+}
+.login_page_right {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 100px;
+}
+.loginform {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  width: 500px;
+}
+.loginform input {
+  height: 60px;
+  border-radius: 10px;
+  outline: none;
+  padding: 0 30px;
+  border: 1px solid #dbdbdb;
+}
+.loginform input:not([type="submit"]):focus {
+  outline: var(--FocusedInput);
+}
+.loginform input[type="submit"] {
+  background-color: var(--primaryColor2);
+  height: 70px;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.formgroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.formgroup button {
+  width: 200px;
+  height: 70px;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  background-color: var(--primaryColor1);
+}
+.formgroup span {
+  cursor: pointer;
+  font-size: 14px;
+}

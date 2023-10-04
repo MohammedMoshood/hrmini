@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+:root {
+  --primaryColor1: #45be93;
+  --primaryColor2:#263238 ;
+  --HobaxDisabled: #c5c5c5;
+  --inputBorder: 0.5px solid rgba(225, 230, 239, 1);
+  --HobaxButtonsTransition: 0.2s all ease-in-out;
+  --Light: #ffeaea;
+  --HobaxGlobalTransition: 0.4s all ease-in-out;
+  --ClosedSidebarWidth: 78px;
+  --OpenSidebarWidth: 270px;
+  --FocusedInput: 0.5px rgba(1, 103, 255, 0.363) solid;
+}
+::placeholder {
+  color: #979797;
+}

@@ -14,7 +14,7 @@
   --HobaxGlobalTransition: 0.4s all ease-in-out;
   --ClosedSidebarWidth: 78px;
   --OpenSidebarWidth: 270px;
-  --FocusedInput: 0.5px rgba(1, 103, 255, 0.363) solid;
+  --FocusedInput: 0.5px rgba(1, 255, 115, 0.363) solid;
 }
 ::placeholder {
   color: #979797;

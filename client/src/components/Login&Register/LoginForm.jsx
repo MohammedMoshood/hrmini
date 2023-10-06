@@ -1,7 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ setForm }) => {
+  const navigate = useNavigate()
   return (
     <form className="loginform">
       <span>Login to your mini HR dashboard !</span>
@@ -14,6 +16,8 @@ const LoginForm = ({ setForm }) => {
         whileHover={{ scale: 0.9 }}
         type="submit"
         value="Login"
+        onClick={() => navigate("/dashboard")}
+        
       />
       <div className="formgroup">
         <motion.button

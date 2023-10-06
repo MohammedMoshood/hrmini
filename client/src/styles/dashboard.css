@@ -1,0 +1,164 @@
+.dashboard {
+  display: flex;
+  height: 100svh;
+  max-width: 1512px;
+  margin: 0 auto;
+}
+.display {
+  width: 70%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  /* height: 100svh; */
+  padding: 20px;
+  /* border-right: #f5f5f5 1px solid; */
+}
+.dynamic_panel {
+  width: 30%;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primaryColor2);
+  justify-content: space-between;
+}
+.top_bar {
+  width: 100%;
+  border-radius: 10px;
+  height: 80px;
+  background-color: #37474f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.user_info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.company_img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+}
+.user_name {
+  font-family: "DM Sans";
+  color: white;
+}
+.logo {
+  font-family: "Passero One";
+  font-size: 30px;
+  color: white;
+}
+.logo span {
+  font-family: "Passero One";
+  font-size: 36px;
+  color: var(--primaryColor1);
+}
+.side-menu {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.side-menu button {
+  height: 45px;
+  width: 100%;
+  padding: 0 15px;
+  align-items: center;
+  background-color: transparent;
+  display: flex;
+  border: none;
+  color: white;
+  transition: 0.2s ease-in-out all;
+  cursor: pointer;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+.side-menu button svg {
+  font-size: 24px;
+  color: var(--primaryColor1);
+}
+.side-menu button:hover {
+  color: white;
+  background-color: var(--primaryColor1);
+}
+.side-menu button:hover svg {
+  color: white;
+}
+.no_staffs {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 80%;
+  align-items: center;
+  /* padding: 50px; */
+}
+.no_staffs h1 {
+  text-align: center;
+}
+.no_staffs button {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  background-color: #8fd8be;
+}
+.no_staffs button img {
+  width: 20px;
+}
+.no_staffs img[alt="illustration"] {
+  width: 100%;
+  z-index: 1;
+}
+
+.side_footer {
+  height: 100px;
+  background-color: #37474f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.add_staff_form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 15px;
+}
+
+.form_label {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-size: 14px;
+}
+.form_label button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: white;
+  border-radius: 50%;
+  display: grid;
+  cursor: pointer;
+  place-items: center;
+}
+.form_label button:hover {
+  background-color: #e13e28;
+  color: white;
+    
+  }
+.add_staff_img {
+  height: 70px;
+  background-color: #37474f;
+  color: white;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+}
+input[name="add_staff_img"] {
+  display: none;
+}

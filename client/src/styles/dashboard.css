@@ -47,6 +47,8 @@
 .user_name {
   font-family: "DM Sans";
   color: white;
+  font-weight: 300;
+
 }
 .logo {
   font-family: "Passero One";
@@ -176,6 +178,8 @@ input[name="add_staff_img"] {
   height: 45px;
   width: 46%;
   border: none;
+  font-weight: 100;
+
   border-radius: 5px;
   padding: 20px;
   background-color: #37474f;

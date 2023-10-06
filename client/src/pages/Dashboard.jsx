@@ -39,7 +39,7 @@ const Dashboard = () => {
             padding: "10px",
             display: "flex",
             flexDirection: "column",
-            gap: "10px",
+            gap: "30px",
           }}
         >
           <div className="top_bar">

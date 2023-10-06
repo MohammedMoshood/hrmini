@@ -181,7 +181,7 @@ const Dashboard = () => {
                 value={"Epondeji@victor.com"}
               />
             </div>
-            <input type="submit" value={"Add new staff"} />
+            <input type="submit" value={"Update"} />
           </form>
         </div>
 

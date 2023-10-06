@@ -39,7 +39,7 @@ const Dashboard = () => {
             padding: "10px",
             display: "flex",
             flexDirection: "column",
-            gap: "30px",
+            gap: "10px",
           }}
         >
           <div className="top_bar">
@@ -85,6 +85,32 @@ const Dashboard = () => {
               <FaCamera />
             </label>
             <input type="file" name="add_staff_img" id="add_staff_img" />
+            <div className="add_staff_form_group">
+              <input type="text" placeholder="Last Name" />
+              <input type="text" placeholder="First Name" />
+            </div>
+            <div className="add_staff_form_group">
+              <input type="text" placeholder="Department" />
+              <input type="text" placeholder="Job Title" />
+            </div>
+            <div className="add_staff_form_group">
+              <input type="text" placeholder="Address" />
+              <select name="" id="">
+                <option disabled value="Gender" >Gender</option>
+                <option value="Male" >Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+            <div className="add_staff_form_group">
+              <input type="text" placeholder="Last Name" />
+              <input type="text" placeholder="First Name" />
+            </div>
+            <div className="add_staff_form_group">
+              <input type="text" placeholder="Last Name" />
+              <input type="text" placeholder="First Name" />
+            </div>
+            <input type="submit" value={"Add new staff"}/>
+
           </form>
         </div>
 

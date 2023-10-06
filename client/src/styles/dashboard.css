@@ -115,7 +115,7 @@
 }
 
 .side_footer {
-  height: 100px;
+  height: 80px;
   background-color: #37474f;
   display: flex;
   justify-content: center;
@@ -126,7 +126,7 @@
 .add_staff_form {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding:10px 30px;
   gap: 15px;
 }
 
@@ -149,16 +149,62 @@
 .form_label button:hover {
   background-color: #e13e28;
   color: white;
-    
-  }
+}
 .add_staff_img {
   height: 70px;
   background-color: #37474f;
   color: white;
   display: grid;
   place-items: center;
+  transition: 0.3s ease-in-out all;
   border-radius: 5px;
+  cursor: pointer;
+}
+.add_staff_img:hover {
+  background-color: var(--primaryColor1);
 }
 input[name="add_staff_img"] {
   display: none;
+}
+.add_staff_form_group {
+  display: flex;
+  justify-content: space-between;
+}
+.add_staff_form_group input {
+  height: 40px;
+  width: 48%;
+  border: none;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #37474f;
+  outline: none;
+  transition: 0.3s ease-in-out all;
+
+  color: white;
+}
+.add_staff_form_group select {
+  height: 40px;
+  width: 48%;
+  border: none;
+  border-radius: 5px;
+  padding:0 20px;
+  background-color: #37474f;
+  outline: none;
+  transition: 0.3s ease-in-out all;
+  color: white;
+}
+.add_staff_form_group input:focus {
+  background-color: white;
+  color: black;
+}
+::placeholder {
+  color: #cecece88;
+}
+.add_staff_form input[type="submit"]{
+ height: 40px;
+ background-color: var(--primaryColor1);
+ border-radius: 5px;
+ border: none;
+ color: white;
+ cursor: pointer;
 }

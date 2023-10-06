@@ -96,21 +96,30 @@ const Dashboard = () => {
             <div className="add_staff_form_group">
               <input type="text" placeholder="Address" />
               <select name="" id="">
-                <option disabled value="Gender" >Gender</option>
-                <option value="Male" >Male</option>
+                <option disabled value="Gender">
+                  Gender
+                </option>
+                <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
             </div>
             <div className="add_staff_form_group">
-              <input type="text" placeholder="Last Name" />
-              <input type="text" placeholder="First Name" />
+              <select name="" id="">
+                <option disabled value="Employment status">
+                  Employment Status
+                </option>
+                <option value="Full time">Full time</option>
+                <option value="Part time">Part time</option>
+                <option value="Contract">Contract</option>
+                <option value="Remote">Remote</option>
+              </select>
+              <input type="text" placeholder="Age" />
             </div>
             <div className="add_staff_form_group">
-              <input type="text" placeholder="Last Name" />
-              <input type="text" placeholder="First Name" />
+              <input type="text" placeholder="Phone Number" />
+              <input type="email" placeholder="Email Address" />
             </div>
-            <input type="submit" value={"Add new staff"}/>
-
+            <input type="submit" value={"Add new staff"} />
           </form>
         </div>
 

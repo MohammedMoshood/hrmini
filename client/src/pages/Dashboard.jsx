@@ -11,11 +11,12 @@ import {
   FaTimes,
   FaCamera,
 } from "react-icons/fa";
+import { mockuserdata } from "./data";
 const Dashboard = () => {
   return (
     <main className="dashboard">
       <div className="display">
-        <div className="no_staffs">
+        {/* <div className="no_staffs">
           <h1>
             You currently have
             <span style={{ borderBottom: "3px solid #45BE93" }}>
@@ -30,7 +31,24 @@ const Dashboard = () => {
             Click to start your{" "}
             <span style={{ color: "#45BE93" }}>HRMini </span>Experience
           </span>
-          <img src={illustration} alt="illustration" />
+          <img src={illustration} alt="illustration" />*/}
+
+        <div className="staffs-container">
+          {mockuserdata.map((staff, i) => {
+            const { name, img, position, status } = staff;
+            return (
+              <div className="single-staff">
+                <img src={img} alt="" />
+                <div className="bottom">
+                  <span className="state"></span>
+                  <span className="staff-name">{name}</span>
+                  <div className="bottom-bar">
+                    <div className={`status-pill ${status === "inactive" && "status-inactive"}`}>{status}</div> {position}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className="dynamic_panel">

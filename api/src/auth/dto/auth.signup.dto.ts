@@ -1,8 +1,5 @@
-import { Type } from 'class-transformer';
 import {
-  Equals,
   IsEmail,
-  IsNumber,
   IsNumberString,
   IsString,
   Length,

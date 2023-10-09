@@ -1,9 +1,11 @@
-import { NestFactory } from '@nestjs/core';
+import * as config from 'config';
 import { AppModule } from './app.module';
+import { NestFactory } from '@nestjs/core';
 
 async function bootstrap() {
+  const dbConfig = config.get('server');
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  await app.listen(dbConfig.port);
   console.log(`Application has started on: ${await app.getUrl()}`);
 }
 bootstrap();

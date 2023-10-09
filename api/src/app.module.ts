@@ -1,19 +1,21 @@
+import * as config from 'config';
 import { DataSource } from 'typeorm';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 
+const dbConfig = config.get('db');
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '',
-      database: 'hrmini',
+      type: dbConfig.type,
+      host: dbConfig.host,
+      port: dbConfig.port,
+      username: dbConfig.username,
+      password: dbConfig.password,
+      database: dbConfig.database,
       entities: [__dirname + '/../**/*.entity.js'],
-      synchronize: true,
+      synchronize: dbConfig.synchronize,
     }),
     AuthModule,
   ],

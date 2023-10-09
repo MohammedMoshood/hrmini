@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/dashboard.css";
 import illustration from "../images/nostaffsimg.png";
 import addsign from "../images/addsign.svg";
@@ -10,9 +10,13 @@ import {
   FaSchool,
   FaTimes,
   FaCamera,
+  FaEye,
+  FaPen,
+  FaTrash,
 } from "react-icons/fa";
 import { mockuserdata } from "./data";
 const Dashboard = () => {
+  const [hover, setHover] = useState(null);
   return (
     <main className="dashboard">
       <div className="display">
@@ -32,18 +36,70 @@ const Dashboard = () => {
             <span style={{ color: "#45BE93" }}>HRMini </span>Experience
           </span>
           <img src={illustration} alt="illustration" />*/}
+        <div className="filters-container">
+          <div
+            style={{ background: "#263238", color: "white" , cursor:"default" }}
+            className="filters-label"
+          >
+            Filters
+          </div>
+          <select name="Department" id="" className="filters-label">
+            <option value="all">Department</option>
+          </select>
+          <select name="" id="" className="filters-label">
+            <option value="all">Job Title</option>
+          </select>
+          <select name="" id="" className="filters-label">
+            <option value="all">Employment status</option>
+          </select>
+          <select name="" id="" className="filters-label">
+            <option value="all">Gender</option>
+          </select>
+          <select name="" id="" className="filters-label">
+            <option value="all">Status</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
 
         <div className="staffs-container">
           {mockuserdata.map((staff, i) => {
             const { name, img, position, status } = staff;
             return (
-              <div className="single-staff">
+              <div
+                key={i}
+                onMouseEnter={() => setHover(i)}
+                onMouseLeave={() => setHover(null)}
+                className="single-staff"
+              >
                 <img src={img} alt="" />
+                <div
+                  className={`single-staff-options ${
+                    hover === i && "active-staff-options"
+                  }  `}
+                >
+                  <div>
+                    <FaEye />
+                  </div>
+                  <div>
+                    <FaPen />
+                  </div>
+                  <div>
+                    <FaTrash />
+                  </div>
+                </div>
                 <div className="bottom">
                   <span className="state"></span>
                   <span className="staff-name">{name}</span>
                   <div className="bottom-bar">
-                    <div className={`status-pill ${status === "inactive" && "status-inactive"}`}>{status}</div> {position}
+                    <div
+                      className={`status-pill ${
+                        status === "inactive" && "status-inactive"
+                      }`}
+                    >
+                      {status}
+                    </div>{" "}
+                    {position}
                   </div>
                 </div>
               </div>

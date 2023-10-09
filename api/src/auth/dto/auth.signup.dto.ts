@@ -6,7 +6,7 @@ import {
   Matches,
   MinLength,
 } from 'class-validator';
-import { Match } from './match.decorator';
+import { Match } from '../decorator/match.decorator';
 
 export class AuthSignupDto {
   @IsString()

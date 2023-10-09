@@ -3,6 +3,7 @@ import { DataSource } from 'typeorm';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { StaffModule } from './staff/staff.module';
 
 const dbConfig = config.get('db');
 @Module({
@@ -18,6 +19,7 @@ const dbConfig = config.get('db');
       synchronize: dbConfig.synchronize,
     }),
     AuthModule,
+    StaffModule,
   ],
 })
 export class AppModule {

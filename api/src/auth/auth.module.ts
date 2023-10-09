@@ -1,5 +1,5 @@
 import * as config from 'config';
-import { User } from './user.entity';
+import { User } from './entities/user.entity';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
@@ -19,5 +19,6 @@ const dbConfig = config.get('jwt');
   ],
   providers: [AuthService, JwtStrategy],
   controllers: [AuthController],
+  exports: [JwtStrategy, PassportModule],
 })
 export class AuthModule {}

@@ -1,5 +1,6 @@
 import { AuthGuard } from '@nestjs/passport';
 import { StaffService } from './staff.service';
+import { Staff } from './entities/staff.entity';
 import { User } from './../auth/entities/user.entity';
 import { CreateStaffDto } from './dto/create-staff.dto';
 import { UpdateStaffDto } from './dto/update-staff.dto';
@@ -13,6 +14,7 @@ import {
   Delete,
   UseGuards,
   Controller,
+  ParseIntPipe,
   ValidationPipe,
 } from '@nestjs/common';
 
@@ -25,7 +27,7 @@ export class StaffController {
   create(
     @Body(ValidationPipe) createStaffDto: CreateStaffDto,
     @GetUser() user: User,
-  ) {
+  ): Promise<Staff> {
     return this.staffService.create(createStaffDto, user);
   }
 
@@ -35,8 +37,11 @@ export class StaffController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.staffService.findOne(+id);
+  findOne(
+    @Param('id', ParseIntPipe) id: number,
+    @GetUser() user: User,
+  ): Promise<Staff> {
+    return this.staffService.findOne(id, user);
   }
 
   @Patch(':id')

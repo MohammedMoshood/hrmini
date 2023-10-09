@@ -1,7 +1,15 @@
 import { Status } from '../enum/status.enum';
 import { Gender } from '../enum/gender.enum';
 import { User } from './../../auth/entities/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  DeleteDateColumn,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Staff {
@@ -10,6 +18,9 @@ export class Staff {
 
   @ManyToOne(() => User, (user) => user.id, { eager: false })
   user: User;
+
+  @Column()
+  userId: number;
 
   @Column()
   department: string;
@@ -41,12 +52,12 @@ export class Staff {
   @Column({ default: true })
   isActive: boolean;
 
-  @Column({ default: null })
+  @CreateDateColumn({ default: null })
   createdAt: Date;
 
-  @Column({ default: null })
+  @UpdateDateColumn({ default: null })
   updatedAt: Date;
 
-  @Column({ default: null })
-  deletedAt: Date;
+  @DeleteDateColumn({ name: 'deletedAt', nullable: true })
+  deletedAt: Date | null;
 }

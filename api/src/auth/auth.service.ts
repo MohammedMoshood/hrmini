@@ -32,8 +32,6 @@ export class AuthService {
     user.address = address;
     user.salt = salt;
     user.hashedPassword = hashedPassword;
-    user.createdAt = new Date();
-    user.updatedAt = new Date();
 
     try {
       await this.usersRepository.save(user);

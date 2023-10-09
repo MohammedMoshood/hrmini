@@ -1,5 +1,13 @@
 import * as bcrypt from 'bcrypt';
-import { Entity, Unique, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Unique,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+} from 'typeorm';
 
 @Entity()
 @Unique(['email'])
@@ -25,14 +33,14 @@ export class User {
   @Column()
   salt: string;
 
-  @Column({ default: null })
+  @CreateDateColumn({ default: null })
   createdAt: Date;
 
-  @Column({ default: null })
+  @UpdateDateColumn({ default: null })
   updatedAt: Date;
 
-  @Column({ default: null })
-  deletedAt: Date;
+  @DeleteDateColumn({ name: 'deletedAt', nullable: true })
+  deletedAt: Date | null;
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

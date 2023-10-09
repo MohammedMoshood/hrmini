@@ -4,7 +4,11 @@ import { Staff } from './entities/staff.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateStaffDto } from './dto/create-staff.dto';
 import { UpdateStaffDto } from './dto/update-staff.dto';
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 
 @Injectable()
 export class StaffService {
@@ -14,31 +18,10 @@ export class StaffService {
   ) {}
 
   async create(createStaffDto: CreateStaffDto, user: User): Promise<Staff> {
-    const {
-      firstName,
-      lastName,
-      email,
-      phone,
-      address,
-      age,
-      gender,
-      department,
-      status,
-    } = createStaffDto;
-
-    const staff = new Staff();
-    staff.user = user;
-    staff.firstName = firstName;
-    staff.lastName = lastName;
-    staff.email = email;
-    staff.phone = phone;
-    staff.address = address;
-    staff.age = age;
-    staff.gender = gender;
-    staff.department = department;
-    staff.status = status;
-    staff.createdAt = new Date();
-    staff.updatedAt = new Date();
+    const staff = this.staffRepository.create({
+      ...createStaffDto,
+      user,
+    });
 
     try {
       await this.staffRepository.save(staff);
@@ -54,8 +37,15 @@ export class StaffService {
     return `This action returns all staff`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} staff`;
+  async findOne(id: number, user: User): Promise<Staff> {
+    const staff = await this.staffRepository.findOne({
+      where: { id, userId: user.id },
+    });
+    if (!staff) {
+      throw new NotFoundException(`Staff with id: ${id} not found`);
+    }
+
+    return staff;
   }
 
   update(id: number, updateStaffDto: UpdateStaffDto) {

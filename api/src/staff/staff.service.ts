@@ -48,8 +48,18 @@ export class StaffService {
     return staff;
   }
 
-  update(id: number, updateStaffDto: UpdateStaffDto) {
-    return `This action updates a #${id} staff ${updateStaffDto}`;
+  async update(
+    id: number,
+    updateStaffDto: UpdateStaffDto,
+    user: User,
+  ): Promise<Staff> {
+    const staff = await this.findOne(id, user);
+    const updatedStaff = {
+      ...staff,
+      ...updateStaffDto,
+    };
+    const newStaff = await this.staffRepository.save(updatedStaff);
+    return newStaff;
   }
 
   async remove(id: number, user: User): Promise<void> {

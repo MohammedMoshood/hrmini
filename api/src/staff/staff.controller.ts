@@ -45,8 +45,12 @@ export class StaffController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStaffDto: UpdateStaffDto) {
-    return this.staffService.update(+id, updateStaffDto);
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body(ValidationPipe) updateStaffDto: UpdateStaffDto,
+    @GetUser() user: User,
+  ): Promise<Staff> {
+    return this.staffService.update(id, updateStaffDto, user);
   }
 
   @Delete(':id')

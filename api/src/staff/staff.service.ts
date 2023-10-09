@@ -52,7 +52,13 @@ export class StaffService {
     return `This action updates a #${id} staff ${updateStaffDto}`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} staff`;
+  async remove(id: number, user: User): Promise<void> {
+    const response = await this.staffRepository.softDelete({
+      id,
+      userId: user.id,
+    });
+    if (response.affected === 0) {
+      throw new NotFoundException(`Staff with id: ${id} not found`);
+    }
   }
 }

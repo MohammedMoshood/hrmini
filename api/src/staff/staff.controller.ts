@@ -50,7 +50,10 @@ export class StaffController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.staffService.remove(+id);
+  remove(
+    @Param('id', ParseIntPipe) id: number,
+    @GetUser() user: User,
+  ): Promise<void> {
+    return this.staffService.remove(id, user);
   }
 }

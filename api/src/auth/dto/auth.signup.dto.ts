@@ -32,7 +32,7 @@ export class AuthSignupDto {
   @Length(11, 11, {
     message: 'Phone number must have a length of $constraint1',
   })
-  phone: number;
+  phone: string;
 
   @IsString()
   address: string;

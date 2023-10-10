@@ -1,9 +1,10 @@
-import { User } from './../auth/entities/user.entity';
-import { Repository } from 'typeorm';
 import { Staff } from './entities/staff.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { User } from './../auth/entities/user.entity';
+import { Repository, SelectQueryBuilder } from 'typeorm';
 import { CreateStaffDto } from './dto/create-staff.dto';
 import { UpdateStaffDto } from './dto/update-staff.dto';
+import { GetStaffFilterDto } from './dto/get-staff-filter.dto';
 import {
   Injectable,
   InternalServerErrorException,
@@ -33,8 +34,23 @@ export class StaffService {
     return staff;
   }
 
-  findAll() {
-    return `This action returns all staff`;
+  async findAll(filterDto: GetStaffFilterDto, user: User): Promise<Staff[]> {
+    const { department, jobTitle, isActive, gender, status } = filterDto;
+    const query = this.staffRepository
+      .createQueryBuilder('staff')
+      .where('staff.userId = :userId', { userId: user.id })
+      .andWhere(status ? 'staff.status = :status' : '1=1', { status })
+      .andWhere(isActive ? 'staff.isActive = :isActive' : '1=1', { isActive })
+      .andWhere(gender ? 'staff.gender = :gender' : '1=1', { gender });
+
+    this.addFilter(query, 'department', department);
+    this.addFilter(query, 'jobTitle', jobTitle);
+
+    try {
+      return await query.getMany();
+    } catch (error) {
+      throw new InternalServerErrorException();
+    }
   }
 
   async findOne(id: number, user: User): Promise<Staff> {
@@ -69,6 +85,18 @@ export class StaffService {
     });
     if (response.affected === 0) {
       throw new NotFoundException(`Staff with id: ${id} not found`);
+    }
+  }
+
+  private addFilter(
+    query: SelectQueryBuilder<Staff>,
+    column: string,
+    value: string | undefined,
+  ): void {
+    if (value) {
+      query.andWhere(`(LOWER(staff.${column}) LIKE LOWER(:${column}))`, {
+        [column]: `%${value}%`,
+      });
     }
   }
 }

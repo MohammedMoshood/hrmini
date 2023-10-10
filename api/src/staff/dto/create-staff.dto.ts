@@ -33,6 +33,9 @@ export class CreateStaffDto {
   @IsNotEmpty()
   department: string;
 
+  @IsNotEmpty()
+  jobTitle: string;
+
   @IsIn([Gender.MALE, Gender.FEMALE, Gender.OTHERS])
   gender: Gender;
 

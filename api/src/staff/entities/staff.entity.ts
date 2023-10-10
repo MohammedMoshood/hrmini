@@ -44,6 +44,9 @@ export class Staff {
   age: string;
 
   @Column()
+  jobTitle: string;
+
+  @Column()
   gender: Gender;
 
   @Column()

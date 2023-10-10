@@ -4,6 +4,7 @@ import { Staff } from './entities/staff.entity';
 import { User } from './../auth/entities/user.entity';
 import { CreateStaffDto } from './dto/create-staff.dto';
 import { UpdateStaffDto } from './dto/update-staff.dto';
+import { GetStaffFilterDto } from './dto/get-staff-filter.dto';
 import { GetUser } from 'src/auth/decorator/get-user.decorator';
 import {
   Get,
@@ -11,6 +12,7 @@ import {
   Body,
   Patch,
   Param,
+  Query,
   Delete,
   UseGuards,
   Controller,
@@ -32,8 +34,11 @@ export class StaffController {
   }
 
   @Get()
-  findAll() {
-    return this.staffService.findAll();
+  findAll(
+    @Query(ValidationPipe) filterDto: GetStaffFilterDto,
+    @GetUser() user: User,
+  ): Promise<Staff[]> {
+    return this.staffService.findAll(filterDto, user);
   }
 
   @Get(':id')

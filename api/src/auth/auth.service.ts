@@ -3,6 +3,7 @@ import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UpdateAuthDto } from './dto/update.auth.dto';
 import { AuthSignupDto } from './dto/auth.signup.dto';
 import { AuthCredentialDto } from './dto/auth.credential.dto';
 import {
@@ -78,5 +79,21 @@ export class AuthService {
     const accessToken = await this.jwtService.sign(payload);
 
     return { accessToken };
+  }
+
+  async update(updateAuthDto: UpdateAuthDto, user: User): Promise<User> {
+    const updatedUser = {
+      ...user,
+      ...updateAuthDto,
+    };
+
+    console.log(updatedUser);
+    return await this.usersRepository.save(updatedUser);
+  }
+
+  async remove(user: User): Promise<void> {
+    await this.usersRepository.softDelete({
+      id: user.id,
+    });
   }
 }

@@ -3,10 +3,10 @@ import { FaEye, FaPen, FaTrash } from "react-icons/fa";
 import { mockuserdata } from "../../../pages/data";
 import FilterBar from "./FilterBar";
 
-const Staffs = () => {
+const Staffs = ({ setPanel }) => {
   return (
     <>
-      <FilterBar/>
+      <FilterBar />
       <div className="staffs-container">
         {mockuserdata.map((staff, i) => {
           const { name, img, position, status } = staff;
@@ -16,9 +16,9 @@ const Staffs = () => {
               <img src={img} alt="" />
               <div className="single-staff-options">
                 <div>
-                  <FaEye />
+                  <FaEye onClick={() => setPanel("view_staff")} />
                 </div>
-                <div>
+                <div onClick={() => setPanel("update_staff")}>
                   <FaPen />
                 </div>
                 <div>

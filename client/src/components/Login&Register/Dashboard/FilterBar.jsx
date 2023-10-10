@@ -20,6 +20,8 @@ const FilterBar = () => {
         </select>
         <select name="" id="" className="filters-label">
           <option value="all">Gender</option>
+          <option value="male">Male</option>
+          <option value="Female">Female</option>
         </select>
         <select name="" id="" className="filters-label">
           <option value="all">Status</option>

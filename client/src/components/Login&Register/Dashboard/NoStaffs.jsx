@@ -4,7 +4,7 @@ import illustration from "../../../images/nostaffsimg.png";
 import addsign from "../../../images/addsign.svg";
 import FilterBar from "./FilterBar";
 
-const NoStaffs = () => {
+const NoStaffs = ({setPanel}) => {
   return (
     <>
       <FilterBar />
@@ -13,7 +13,7 @@ const NoStaffs = () => {
           You currently have
           <span style={{ borderBottom: "3px solid #45BE93" }}> no staffs</span>
         </h1>
-        <motion.button>
+        <motion.button onClick={()=>setPanel("add_staff")}>
           <img src={addsign} alt="" />
         </motion.button>
         <span>

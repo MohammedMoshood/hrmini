@@ -228,7 +228,7 @@ input[name="add_staff_img"] {
   flex-direction: column;
   justify-content: space-between;
   width: 200px;
-  background-color: #f2f2f2;
+  background-color: #fbfbfb;
   border-radius: 10px;
   height: 250px;
   position: relative;
@@ -239,13 +239,13 @@ input[name="add_staff_img"] {
 .single-staff-shade {
   width: 100%;
   height: 100%;
-  background-color: #37474f1c;
+  background-color: #37474f0b;
   position: absolute;
+  transition: 0.2s ease-in-out all;
   z-index: 2;
 }
-.single-staff:hover  .single-staff-shade{
-  background-color: #37474f9b;
-  
+.single-staff:hover .single-staff-shade {
+  background-color: #45be9441;
 }
 
 .single-staff img {
@@ -272,7 +272,7 @@ input[name="add_staff_img"] {
   opacity: 0;
   transition: 0.4s ease-in-out all;
 }
-.single-staff:hover .single-staff-options{
+.single-staff:hover .single-staff-options {
   opacity: 1;
   margin-top: 30px;
 }
@@ -284,11 +284,13 @@ input[name="add_staff_img"] {
   color: white;
   display: grid;
   place-items: center;
+  opacity: 0.7;
   transition: 0.2s ease-in-out all;
   cursor: pointer;
 }
 .single-staff-options div:hover {
-  background-color: var(--primaryColor1);
+  opacity: 1;
+  transform: scale(1.2);
   color: white;
 }
 .single-staff .bottom .state {
@@ -341,4 +343,60 @@ input[name="add_staff_img"] {
   outline: none;
   padding: 0 20px;
   cursor: pointer;
+}
+.view_staff {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  /* gap: 30px; */
+}
+.view_staff_group {
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-weight: 200;
+  font-size: 14px;
+}
+.view_staff_group .name {
+  font-size: 24px;
+  font-weight: 500;
+}
+.view_staff_group .value {
+  opacity: 0.4;
+}
+
+.view_staff_bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.view_staff_button {
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  border: 1px solid white;
+  transition: 0.2s ease-in-out all;
+}
+.edit:hover {
+  background-color: #286094;
+  border: none;
+  scale: 0.9;
+}
+.delete:hover {
+  background-color: #e13e28;
+  border: none;
+  scale: 0.9;
+}
+.view_staff_status_toggle {
+  border-radius: 5px;
+  background-color: var(--primaryColor1);
+  border: none;
+  width: 60%;
+  color: #fff;
+  height: 40px;
 }

@@ -1,7 +1,9 @@
 import React from "react";
 import SideMenu from "./SideMenu";
-
-const SidePanel = () => {
+import UpdateStaff from "./UpdateStaff";
+import AddStaff from "./AddStaff";
+import ViewStaff from "./ViewStaff"
+const SidePanel = ({ setPanel, sidePanel }) => {
   return (
     <div className="dynamic_panel">
       <div
@@ -25,7 +27,15 @@ const SidePanel = () => {
             ini
           </span>
         </div>
-        <SideMenu />
+        {sidePanel === "update_staff" ? (
+          <UpdateStaff />
+        ) : sidePanel === "add_staff" ? (
+          <AddStaff />
+        ) : sidePanel === "view_staff" ? (
+          <ViewStaff  setPanel={setPanel} />
+        ) : (
+          <SideMenu setPanel={setPanel} />
+        )}
       </div>
       <div className="side_footer">waleVaries</div>
     </div>

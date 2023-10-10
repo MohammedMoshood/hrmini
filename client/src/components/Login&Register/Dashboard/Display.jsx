@@ -3,10 +3,14 @@ import NoStaffs from "./NoStaffs";
 import Staffs from "./Staffs";
 import { mockuserdata } from "../../../pages/data";
 
-const Display = () => {
+const Display = ({ setPanel }) => {
   return (
     <div className="display">
-      {mockuserdata.length == 0 ? <NoStaffs /> : <Staffs />}
+      {mockuserdata.length === 0 ? (
+        <NoStaffs setPanel={setPanel} />
+      ) : (
+        <Staffs setPanel={setPanel} />
+      )}
     </div>
   );
 };

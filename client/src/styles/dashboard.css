@@ -220,7 +220,7 @@ input[name="add_staff_img"] {
   display: flex;
   justify-content: space-between;
   /* gap: 20px; */
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
   width: 100%;
 }
 .single-staff {
@@ -235,14 +235,19 @@ input[name="add_staff_img"] {
   overflow: hidden;
   cursor: pointer;
 }
-.single-staff::after {
-  content: "";
+
+.single-staff-shade {
   width: 100%;
   height: 100%;
   background-color: #37474f1c;
   position: absolute;
   z-index: 2;
 }
+.single-staff:hover  .single-staff-shade{
+  background-color: #37474f9b;
+  
+}
+
 .single-staff img {
   width: 100%;
   position: absolute;
@@ -267,10 +272,11 @@ input[name="add_staff_img"] {
   opacity: 0;
   transition: 0.4s ease-in-out all;
 }
-.active-staff-options {
+.single-staff:hover .single-staff-options{
   opacity: 1;
   margin-top: 30px;
 }
+
 .single-staff-options div {
   height: 45px;
   width: 45px;
@@ -323,16 +329,16 @@ input[name="add_staff_img"] {
   padding: 0 12px;
 }
 
- .filters-label{
+.filters-label {
   background-color: transparent;
   width: max-content;
-  font-size: 12px ;
+  font-size: 12px;
   display: flex;
   place-items: center;
   border-radius: 10px;
   border: none;
   height: 40px;
-  outline: none ;
+  outline: none;
   padding: 0 20px;
   cursor: pointer;
- }
+}

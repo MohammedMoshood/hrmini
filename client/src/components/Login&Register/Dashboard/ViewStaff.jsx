@@ -6,7 +6,7 @@ const ViewStaff = ({setPanel}) => {
     <div className="view_staff">
       <div style={{ marginTop: "0" }} className="view_staff_group">
         <span className="name">Adigun Victor</span>
-        <div style={{ height: "20px" }} className="status-pill">
+        <div  className="view_staff_status_pill">
           active
         </div>
       </div>

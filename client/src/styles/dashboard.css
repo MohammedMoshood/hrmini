@@ -22,7 +22,7 @@
   /* gap: 30px; */
   display: flex;
   flex-direction: column;
-  background-color: var(--primaryColor2);
+  /* background-color: var(--primaryColor2); */
   justify-content: space-between;
 }
 .top_bar {
@@ -75,7 +75,6 @@
   background-color: transparent;
   display: flex;
   border: none;
-  color: white;
   transition: 0.2s ease-in-out all;
   cursor: pointer;
   justify-content: space-between;
@@ -138,27 +137,29 @@
 .form_label {
   display: flex;
   justify-content: space-between;
-  color: white;
+  /* color: white; */
   font-size: 14px;
 }
 .form_label button {
   width: 24px;
   height: 24px;
   border: none;
-  background-color: white;
+  color: white;
+  background-color: #e13e28;
   border-radius: 50%;
   display: grid;
+  transition: 0.2s ease-in-out all;
   cursor: pointer;
   place-items: center;
 }
 .form_label button:hover {
-  background-color: #e13e28;
+  background-color: #ae1400;
   color: white;
 }
 .add_staff_img {
   height: 70px;
-  background-color: #37474f;
-  color: white;
+  background-color: #f9f9f9;
+  color: var(--primaryColor2);
   display: grid;
   place-items: center;
   transition: 0.3s ease-in-out all;
@@ -167,6 +168,7 @@
 }
 .add_staff_img:hover {
   background-color: var(--primaryColor1);
+  color: white;
 }
 input[name="add_staff_img"] {
   display: none;
@@ -179,15 +181,15 @@ input[name="add_staff_img"] {
   height: 45px;
   width: 46%;
   border: none;
-  font-weight: 100;
+  font-weight: 200;
 
   border-radius: 5px;
   padding: 20px;
-  background-color: #37474f;
+  background-color: #f9f9f9;
   outline: none;
   transition: 0.3s ease-in-out all;
 
-  color: white;
+  color: black;
 }
 .add_staff_form_group select {
   height: 45px;
@@ -195,17 +197,17 @@ input[name="add_staff_img"] {
   border: none;
   border-radius: 5px;
   padding: 0 20px;
-  background-color: #37474f;
+  background-color: #f9f9f9;
   outline: none;
   transition: 0.3s ease-in-out all;
-  color: white;
+  color: black;
 }
 .add_staff_form_group input:focus {
   background-color: white;
   color: black;
 }
 ::placeholder {
-  color: #cecece88;
+  color: #96969688;
 }
 .add_staff_form input[type="submit"] {
   height: 40px;
@@ -347,16 +349,29 @@ input[name="add_staff_img"] {
 .view_staff {
   display: flex;
   flex-direction: column;
-  padding: 30px;
-  /* gap: 30px; */
+  padding: 0 30px;
+}
+.view_staff_status_pill {
+  font-size: 12px;
+  background-color: var(--primaryColor1);
+  border-radius: 10px;
+  font-weight: 500;
+  height: 20px;
+  width: 70px;
+  color: white;
+  display: grid;
+  place-items: center;
+}
+.view_staff_status-inactive {
+  color: #e13e28;
 }
 .view_staff_group {
   display: flex;
-  color: white;
+  color: black;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
-  font-weight: 200;
+  margin-top: 15px;
+  font-weight: 300;
   font-size: 14px;
 }
 .view_staff_group .name {
@@ -377,19 +392,29 @@ input[name="add_staff_img"] {
   width: 40px;
   border-radius: 5px;
   background-color: transparent;
-  color: white;
   cursor: pointer;
-  border: 1px solid white;
+  font-size: 16px;
   transition: 0.2s ease-in-out all;
+}
+.edit {
+  border: 1px solid #286094;
+  color: #286094;
+}
+.delete {
+  border: 1px solid #e13e28;
+  color: #e13e28;
 }
 .edit:hover {
   background-color: #286094;
+  color: white;
   border: none;
   scale: 0.9;
 }
 .delete:hover {
   background-color: #e13e28;
   border: none;
+  color: white;
+
   scale: 0.9;
 }
 .view_staff_status_toggle {
@@ -399,4 +424,5 @@ input[name="add_staff_img"] {
   width: 60%;
   color: #fff;
   height: 40px;
+  cursor: pointer;
 }

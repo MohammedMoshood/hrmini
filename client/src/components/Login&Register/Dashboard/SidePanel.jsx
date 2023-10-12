@@ -21,7 +21,7 @@ const SidePanel = ({ setPanel, sidePanel }) => {
             </div>
             <span className="user_name">VariationTech</span>
           </div>
-          <span class="logo">
+          <span className="logo">
             HR
             <span>M</span>
             ini

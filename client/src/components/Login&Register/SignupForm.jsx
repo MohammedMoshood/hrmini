@@ -1,18 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 const SignupForm = ({ setForm }) => {
+  const [lastName, setLastName] = useState();
+  const [firstName, setFirstName] = useState();
+  const [email, setEmail] = useState();
+  const [address, setAddress] = useState();
+  const [password, setPassword] = useState();
+  const [password2, setPassword2] = useState();
 
   return (
     <form className="loginform">
       <span>Sign up to HRMini</span>
       <div className="formgroup">
-        <input placeholder="Last Name" type="email" />
-        <input placeholder="First Name" type="text" />
+        <input
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          placeholder="Last Name"
+          type="email"
+        />
+        <input
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          placeholder="First Name"
+          type="text"
+        />
       </div>
-      <input placeholder="Email Address" type="email" />
-      <input placeholder="Address" type="text" />
-      <input placeholder="Password" type="password" />
-      <input placeholder="Confirm password" type="password" />
+      <input
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email Address"
+        type="email"
+      />
+      <input
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
+        placeholder="Address"
+        type="text"
+      />
+      <input
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+        type="password"
+      />
+      <input
+        value={password2}
+        onChange={(e) => setPassword2(e.target.value)}
+        placeholder="Confirm password"
+        type="password"
+      />
       <motion.input
         initial={{ x: 100, opacity: 0.5 }}
         animate={{ opacity: 1, x: 0 }}

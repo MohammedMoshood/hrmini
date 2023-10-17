@@ -87,7 +87,6 @@ export class AuthService {
       ...updateAuthDto,
     };
 
-    console.log(updatedUser);
     return await this.usersRepository.save(updatedUser);
   }
 

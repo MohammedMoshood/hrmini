@@ -1,8 +1,8 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { signupSchema } from "./Dashboard/yup";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { signupSchema } from "./Dashboard/yup";
 import { yupResolver } from "@hookform/resolvers/yup"; //allows us to make a connection between react-hook-form and yup which are two different libraries
 // const User_Regex = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 // const Pwd_Regex = /^(?=.*[a-z]) (?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -10,8 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup"; //allows us to make a con
 // what is a schema ? a schema defines how data is organized within a database
 
 const SignupForm = ({ setForm }) => {
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const [error, setError] = useState([]);
   const {
     register,
     handleSubmit,
@@ -23,27 +22,24 @@ const SignupForm = ({ setForm }) => {
   const submitForm = async (data) => {
     const formBody = new URLSearchParams(data).toString();
 
-    let result = await fetch("http://localhost:3000/auth/signup", {
-      method: "POST",
-      body: formBody,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
-        // "Authorization": `Bearer ${loggedInUser.token}`
-      },
-    });
+    try {
+      await axios.post("http://localhost:3000/auth/signup", formBody, {
+        headers: { Accept: "application/json", "Content-Type": "application/x-www-form-urlencoded" },
+      });
 
-    console.log(result);
+      error.length !== 0 && setForm("signupsuccess");
+      // .catch((e) => {
+      // setError(e.response.data.message);
+      // });
+    } catch (e) {
+      setError(e.response.data.message);
+    }
   };
 
   return (
     <form className="registerform" onSubmit={handleSubmit(submitForm)}>
       <span>Sign up to HRMini</span>
-      <input
-        {...register("companyName")}
-        placeholder="Company Name"
-        type="text"
-      />
+      <input {...register("companyName")} placeholder="Company Name" type="text" />
       <span className="error">{errors.companyName?.message} </span>
       <input {...register("email")} placeholder="Email Address" type="email" />
       <span className="error">{errors.email?.message} </span>
@@ -57,15 +53,19 @@ const SignupForm = ({ setForm }) => {
       <input {...register("password")} placeholder="Password" type="password" />
       <span className="error">{errors.password?.message} </span>
 
-      <input
-        {...register("passwordConfirm")}
-        placeholder="Confirm password"
-        type="password"
-      />
-      <span className="error">
-        {errors.passwordConfirm && "Passwords should match!"}{" "}
-      </span>
+      <input {...register("passwordConfirm")} placeholder="Confirm password" type="password" />
+      <span className="error">{errors.passwordConfirm && "Passwords should match!"} </span>
 
+      <span className="error" style={{ marginBottom: "30px" }}>
+        {error.map((data, i) => {
+          return (
+            <span key={i}>
+              {data}
+              <br />
+            </span>
+          );
+        })}
+      </span>
       <motion.input
         initial={{ x: 100, opacity: 0.5 }}
         animate={{ opacity: 1, x: 0 }}
@@ -76,14 +76,7 @@ const SignupForm = ({ setForm }) => {
         // onClick={() => setForm("signupsuccess")}
       />
       <div className="formgroup">
-        <motion.button
-          initial={{ x: 150, opacity: 0.5 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          whileHover={{ scale: 0.9 }}
-          onClick={() => setForm("login")}
-          style={{ width: "100%" }}
-        >
+        <motion.button initial={{ x: 150, opacity: 0.5 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} whileHover={{ scale: 0.9 }} onClick={() => setForm("login")} style={{ width: "100%" }}>
           Login
         </motion.button>
       </div>

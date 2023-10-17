@@ -57,6 +57,32 @@
   border: none;
   cursor: pointer;
 }
+.registerform {
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+  gap: 15px;
+}
+.registerform input {
+  height: 50px;
+  border-radius: 5px;
+  outline: none;
+  padding: 0 30px;
+  margin-bottom: -5px;
+
+  border: 1px solid #dbdbdb;
+}
+.registerform input:not([type="submit"]):focus {
+  outline: var(--FocusedInput);
+}
+.registerform input[type="submit"] {
+  background-color: var(--primaryColor2);
+  height: 55px;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
 .formgroup {
   display: flex;
   justify-content: space-between;
@@ -77,4 +103,10 @@
 .formgroup span {
   cursor: pointer;
   font-size: 14px;
+}
+.error {
+  height: 0px;
+  font-size: 10px;
+  color: red;
+  /* margin-top: -10px; */
 }

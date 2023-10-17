@@ -1,5 +1,5 @@
 import React from "react";
-import { FaPen, FaPencilAlt, FaTrash } from "react-icons/fa";
+import {FaPencilAlt, FaTrash } from "react-icons/fa";
 
 const ViewStaff = ({setPanel}) => {
   return (

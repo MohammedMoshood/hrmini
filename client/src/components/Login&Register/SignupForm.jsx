@@ -28,10 +28,8 @@ const SignupForm = ({ setForm }) => {
       });
 
       error.length !== 0 && setForm("signupsuccess");
-      // .catch((e) => {
-      // setError(e.response.data.message);
-      // });
     } catch (e) {
+      // console.log(e.response.data.message);
       setError(e.response.data.message);
     }
   };

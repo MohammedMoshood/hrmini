@@ -43,7 +43,7 @@ export class AuthService {
     } catch (error) {
       console.log(error);
       if (error.code === 'ER_DUP_ENTRY') {
-        throw new ConflictException('Email already exists');
+        throw new ConflictException(['Email already exists']);
       } else {
         throw new InternalServerErrorException();
       }

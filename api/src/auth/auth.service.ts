@@ -68,7 +68,7 @@ export class AuthService {
 
   async signIn(
     authCredentialDto: AuthCredentialDto,
-  ): Promise<{ accessToken: string }> {
+  ): Promise<{ accessToken: string; user: object }> {
     const user = await this.validateUserPassword(authCredentialDto);
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
@@ -78,7 +78,10 @@ export class AuthService {
     const payload = { email, companyName, phone, address };
     const accessToken = await this.jwtService.sign(payload);
 
-    return { accessToken };
+    delete user.hashedPassword;
+    delete user.salt;
+    delete user.deletedAt;
+    return { accessToken, user };
   }
 
   async update(updateAuthDto: UpdateAuthDto, user: User): Promise<User> {

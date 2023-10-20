@@ -36,7 +36,7 @@ export class AuthController {
   @Post('/signin')
   signIn(
     @Body() authCredentialDto: AuthCredentialDto,
-  ): Promise<{ accessToken: string }> {
+  ): Promise<{ accessToken: string; user: object }> {
     return this.authService.signIn(authCredentialDto);
   }
 

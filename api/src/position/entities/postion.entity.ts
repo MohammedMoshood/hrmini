@@ -1,8 +1,8 @@
-import { Position } from './../../position/entities/postion.entity';
+import { Department } from './../../department/entities/department.entity';
 import {
   Entity,
   Column,
-  OneToMany,
+  ManyToOne,
   BaseEntity,
   CreateDateColumn,
   DeleteDateColumn,
@@ -11,17 +11,20 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Department extends BaseEntity {
+export class Position extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   name: string;
 
-  @OneToMany(() => Position, (position) => position.department, {
-    eager: true,
+  @ManyToOne(() => Department, (department) => department.positions, {
+    eager: false,
   })
-  positions: Position[];
+  department: string;
+
+  @Column()
+  departmentId: number;
 
   @CreateDateColumn({ default: null })
   createdAt: Date;

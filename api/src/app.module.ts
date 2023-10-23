@@ -1,3 +1,4 @@
+import { PositionModule } from './position/position.module';
 import * as config from 'config';
 import { DataSource } from 'typeorm';
 import { Module } from '@nestjs/common';
@@ -21,6 +22,7 @@ const dbConfig = config.get('db');
     }),
     AuthModule,
     StaffModule,
+    PositionModule,
     DepartmentModule,
   ],
 })

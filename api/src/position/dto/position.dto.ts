@@ -4,6 +4,6 @@ export class PositionDto {
   @IsNotEmpty()
   name: string;
 
-  @IsNotEmpty()
+  // @IsNotEmpty()
   department: string;
 }

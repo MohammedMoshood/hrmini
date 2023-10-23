@@ -11,6 +11,8 @@ import {
   Delete,
   UseGuards,
   Controller,
+  ParseIntPipe,
+  ValidationPipe,
 } from '@nestjs/common';
 
 @Controller('position')
@@ -19,7 +21,7 @@ export class PositionController {
   constructor(private readonly positionService: PositionService) {}
 
   @Post()
-  create(@Body() positionDto: PositionDto): Promise<Position> {
+  create(@Body(ValidationPipe) positionDto: PositionDto): Promise<Position> {
     return this.positionService.create(positionDto);
   }
 
@@ -29,20 +31,20 @@ export class PositionController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number): Promise<Position> {
+  findOne(@Param('id', ParseIntPipe) id: number): Promise<Position> {
     return this.positionService.findOne(id);
   }
 
   @Patch(':id')
   update(
-    @Param('id') id: string,
-    @Body() positionDto: PositionDto,
+    @Param('id', ParseIntPipe) id: string,
+    @Body(ValidationPipe) positionDto: PositionDto,
   ): Promise<Position> {
     return this.positionService.update(+id, positionDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number): Promise<void> {
+  remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return this.positionService.remove(id);
   }
 }

@@ -23,6 +23,7 @@ export class PositionService {
     position.department = department;
 
     try {
+      console.log(position);
       await this.positionRepository.save(position);
     } catch (error) {
       throw new InternalServerErrorException();

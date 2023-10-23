@@ -11,6 +11,8 @@ import {
   Delete,
   UseGuards,
   Controller,
+  ParseIntPipe,
+  ValidationPipe,
 } from '@nestjs/common';
 
 @Controller('department')
@@ -19,7 +21,9 @@ export class DepartmentController {
   constructor(private readonly departmentService: DepartmentService) {}
 
   @Post()
-  create(@Body() departmentDto: DepartmentDto): Promise<Department> {
+  create(
+    @Body(ValidationPipe) departmentDto: DepartmentDto,
+  ): Promise<Department> {
     return this.departmentService.create(departmentDto);
   }
 
@@ -29,20 +33,20 @@ export class DepartmentController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number): Promise<Department> {
+  findOne(@Param('id', ParseIntPipe) id: number): Promise<Department> {
     return this.departmentService.findOne(id);
   }
 
   @Patch(':id')
   update(
-    @Param('id') id: string,
-    @Body() departmentDto: DepartmentDto,
+    @Param('id', ParseIntPipe) id: string,
+    @Body(ValidationPipe) departmentDto: DepartmentDto,
   ): Promise<Department> {
     return this.departmentService.update(+id, departmentDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number): Promise<void> {
+  remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return this.departmentService.remove(id);
   }
 }

@@ -23,8 +23,8 @@ export class Position extends BaseEntity {
   })
   department: string;
 
-  @Column()
-  departmentId: number;
+  // @Column()
+  // departmentId: number;
 
   @CreateDateColumn({ default: null })
   createdAt: Date;

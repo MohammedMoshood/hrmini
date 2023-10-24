@@ -4,14 +4,14 @@ server:
 db:
  type: 'mysql'
  port: 3306
-#  database: 'hrmini'
-#  host: localhost
-#  username: root
-#  password: ''
- database: hrmini
- host: db4free.net
- username: kareemayodeji
- password: Kareem'shrmini
+ database: 'hrmini'
+ host: localhost
+ username: root
+ password: ''
+#  database: hrmini
+#  host: db4free.net
+#  username: kareemayodeji
+#  password: Kareem'shrmini
 
 jwt:
   expiresIn: '1h'

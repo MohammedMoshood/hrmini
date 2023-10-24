@@ -13,3 +13,8 @@ export const signupSchema = yup.object().shape({
     .oneOf([yup.ref("password"), null])
     .required(),
 });
+
+export const signinSchema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().min(8).max(32).required(),
+});

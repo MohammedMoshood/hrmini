@@ -23,14 +23,15 @@ const SignupForm = ({ setForm }) => {
     const formBody = new URLSearchParams(data).toString();
 
     try {
-      await axios.post("http://localhost:3000/auth/signup", formBody, {
+      await axios.post("http://localhost:8000/auth/signup", formBody, {
         headers: { Accept: "application/json", "Content-Type": "application/x-www-form-urlencoded" },
       });
 
-      error.length !== 0 && setForm("signupsuccess");
+      
     } catch (e) {
       // console.log(e.response.data.message);
       setError(e.response.data.message);
+      error == [] && setForm("dashboard");
     }
   };
 
@@ -54,7 +55,7 @@ const SignupForm = ({ setForm }) => {
       <input {...register("passwordConfirm")} placeholder="Confirm password" type="password" />
       <span className="error">{errors.passwordConfirm && "Passwords should match!"} </span>
 
-      <span className="error" style={{ marginBottom: "30px" }}>
+      {/* <span className="error" >
         {error.map((data, i) => {
           return (
             <span key={i}>
@@ -63,7 +64,7 @@ const SignupForm = ({ setForm }) => {
             </span>
           );
         })}
-      </span>
+      </span> */}
       <motion.input
         initial={{ x: 100, opacity: 0.5 }}
         animate={{ opacity: 1, x: 0 }}

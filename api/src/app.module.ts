@@ -1,9 +1,11 @@
+import { PositionModule } from './position/position.module';
 import * as config from 'config';
 import { DataSource } from 'typeorm';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { StaffModule } from './staff/staff.module';
+import { DepartmentModule } from './department/department.module';
 
 const dbConfig = config.get('db');
 @Module({
@@ -20,6 +22,8 @@ const dbConfig = config.get('db');
     }),
     AuthModule,
     StaffModule,
+    PositionModule,
+    DepartmentModule,
   ],
 })
 export class AppModule {

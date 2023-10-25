@@ -3,7 +3,7 @@ import SideMenu from "./SideMenu";
 import UpdateStaff from "./UpdateStaff";
 import AddStaff from "./AddStaff";
 import ViewStaff from "./ViewStaff"
-const SidePanel = ({ setPanel, sidePanel }) => {
+const SidePanel = ({ setPanel, sidePanel,viewingStaff }) => {
   return (
     <div className="dynamic_panel">
       <div
@@ -32,7 +32,7 @@ const SidePanel = ({ setPanel, sidePanel }) => {
         ) : sidePanel === "add_staff" ? (
           <AddStaff />
         ) : sidePanel === "view_staff" ? (
-          <ViewStaff  setPanel={setPanel} />
+          <ViewStaff viewingStaff={viewingStaff}  setPanel={setPanel} />
         ) : (
           <SideMenu setPanel={setPanel} />
         )}

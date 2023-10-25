@@ -18,3 +18,15 @@ export const signinSchema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().min(8).max(32).required(),
 });
+export const addStaffSchema = yup.object().shape({
+  firstName: yup.string().required(),
+  lastName: yup.string().required(),
+  email: yup.string().email().required(),
+  phone: yup.string().matches(phoneRegExp, "Phone number is not valid"),
+  address: yup.string().required(),
+  gender: yup.string().required(),
+  status: yup.string().required(),
+  department: yup.string().required(),
+  jobTitle: yup.string().required(),
+  age: yup.number().min(9).max(90),
+});

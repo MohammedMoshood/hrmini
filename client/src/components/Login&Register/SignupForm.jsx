@@ -31,7 +31,7 @@ const SignupForm = ({ setForm }) => {
     } catch (e) {
       // console.log(e.response.data.message);
       setError(e.response.data.message);
-      error == [] && setForm("dashboard");
+      error?.length === 0 && setForm("dashboard");
     }
   };
 

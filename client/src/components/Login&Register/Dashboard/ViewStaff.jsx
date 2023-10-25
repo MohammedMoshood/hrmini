@@ -1,46 +1,88 @@
-import React from "react";
-import {FaPencilAlt, FaTrash } from "react-icons/fa";
+import axios from "axios";
+import React, { useCallback, useEffect, useState } from "react";
+import { FaPencilAlt, FaTrash } from "react-icons/fa";
 
-const ViewStaff = ({setPanel}) => {
+const ViewStaff = ({ setPanel, viewingStaff }) => {
+  const [staff, setStaff] = useState({});
+
+  const getStaff = useCallback(async () => {
+    const userToken = localStorage.getItem("userToken");
+    try {
+      const res = await axios.get(
+        `http://localhost:8000/staff/${viewingStaff}`,
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
+      setStaff(res.data);
+      console.log(res.data);
+    } catch (e) {
+      console.log(e.response.data.message);
+      // setError(e.response.data.message);
+    }
+  }, [viewingStaff]);
+  useEffect(() => {
+    getStaff();
+  }, [getStaff]);
+  const {
+    department,
+    firstName,
+    lastName,
+    email,
+    phone,
+    address,
+    age,
+    jobTitle,
+    gender,
+    status,
+    isActive,
+  } = staff;
   return (
     <div className="view_staff">
       <div style={{ marginTop: "0" }} className="view_staff_group">
-        <span className="name">Adigun Victor</span>
-        <div  className="view_staff_status_pill">
-          active
+        <span className="name">{`${lastName} ${firstName}`}</span>
+        <div className="view_staff_status_pill">
+          {isActive ? "active" : "inactive"}
         </div>
       </div>
       <div className="view_staff_group">
-        <span>Department</span> <span className="value">Kitchen</span>
+        <span>Department</span> <span className="value">{department}</span>
       </div>
       <div className="view_staff_group">
-        <span>Job title</span> <span className="value">Chef</span>
+        <span>Job title</span> <span className="value">{jobTitle}</span>
       </div>
       <div className="view_staff_group">
-        <span>Employment status</span> <span className="value">Full time</span>
+        <span>Employment status</span> <span className="value">{status}</span>
       </div>
       <div className="view_staff_group">
-        <span>Age</span> <span className="value">21</span>
+        <span>Age</span> <span className="value">{age}</span>
       </div>
       <div className="view_staff_group">
-        <span>Gender</span> <span className="value">Male</span>
+        <span>Gender</span> <span className="value">{gender}</span>
       </div>
       <div style={{ marginTop: "30px" }} className="view_staff_group">
         <span>Contact</span>
       </div>
       <div className="view_staff_group">
-        <span className="value">adigunmepon@ymail.com</span>
+        <span className="value">{email}</span>
       </div>
       <div className="view_staff_group">
-        <span className="value">+2349024193035</span>
+        <span className="value">{phone}</span>
       </div>
       <div className="view_staff_group">
-        <span className="value">
-          no 134 Mobolaji Johnson station, Alagomeji
-        </span>
+        <span className="value">{address}</span>
       </div>
       <div className="view_staff_bottom">
-        <button onClick={()=>{setPanel("update_staff")}} className="view_staff_button edit">
+        <button
+          onClick={() => {
+            setPanel("update_staff");
+          }}
+          className="view_staff_button edit"
+        >
           <FaPencilAlt />
         </button>
         <button className="view_staff_button delete">

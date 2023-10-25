@@ -19,7 +19,6 @@ const LoginForm = ({ setForm }) => {
   });
   const submitForm = async (data) => {
     const formBody = new URLSearchParams(data).toString();
-    // const userToken =  localStorage.getItem("userToken")
     try {
       const res = await axios.post(
         "http://localhost:8000/auth/signin",
@@ -28,17 +27,16 @@ const LoginForm = ({ setForm }) => {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/x-www-form-urlencoded",
-            // Authorization:`Bearer ${userToken}`
           },
         }
       );
       console.log(res);
       localStorage.setItem("userToken", res.data?.accessToken);
-      // error.length !== 0 && setForm("signupsuccess");
+      setError("");
+      navigate("/dashboard");
     } catch (e) {
       console.log(e.response.data.message);
       setError(e.response.data.message);
-      error === "" && navigate("/dashboard")
     }
   };
   return (

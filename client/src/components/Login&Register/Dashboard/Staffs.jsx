@@ -1,22 +1,29 @@
 import React from "react";
 import { FaEye, FaPen, FaTrash } from "react-icons/fa";
-import { mockuserdata } from "../../../pages/data";
+// import { mockuserdata } from "../../../pages/data";
 import FilterBar from "./FilterBar";
+import mockImg from "../../../images/mockImg.png";
 
-const Staffs = ({ setPanel }) => {
+const Staffs = ({ setPanel, staffs, setViewingStaff }) => {
   return (
     <>
       <FilterBar />
+
       <div className="staffs-container">
-        {mockuserdata.map((staff, i) => {
-          const { name, img, position, status } = staff;
+        {staffs?.map((staff, i) => {
+          const { firstName, lastName, position, isActive, id } = staff;
           return (
             <div key={i} className="single-staff">
               <div className="single-staff-shade"></div>
-              <img src={img} alt="" />
+              <img src={mockImg} alt="" />
               <div className="single-staff-options">
                 <div>
-                  <FaEye onClick={() => setPanel("view_staff")} />
+                  <FaEye
+                    onClick={() => {
+                      setViewingStaff(id);
+                      setPanel("view_staff");
+                    }}
+                  />
                 </div>
                 <div onClick={() => setPanel("update_staff")}>
                   <FaPen />
@@ -27,14 +34,12 @@ const Staffs = ({ setPanel }) => {
               </div>
               <div className="bottom">
                 <span className="state"></span>
-                <span className="staff-name">{name}</span>
+                <span className="staff-name">{lastName + " " + firstName}</span>
                 <div className="bottom-bar">
                   <div
-                    className={`status-pill ${
-                      status === "inactive" && "status-inactive"
-                    }`}
+                    className={`status-pill ${!isActive && "status-inactive"}`}
                   >
-                    {status}
+                    active
                   </div>{" "}
                   {position}
                 </div>

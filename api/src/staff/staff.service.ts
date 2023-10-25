@@ -7,8 +7,9 @@ import { UpdateStaffDto } from './dto/update-staff.dto';
 import { GetStaffFilterDto } from './dto/get-staff-filter.dto';
 import {
   Injectable,
-  InternalServerErrorException,
   NotFoundException,
+  ConflictException,
+  InternalServerErrorException,
 } from '@nestjs/common';
 
 @Injectable()
@@ -27,7 +28,11 @@ export class StaffService {
     try {
       await this.staffRepository.save(staff);
     } catch (error) {
-      throw new InternalServerErrorException();
+      if (error.code === 'ER_DUP_ENTRY') {
+        throw new ConflictException(['Email already exists']);
+      } else {
+        throw new InternalServerErrorException();
+      }
     }
     delete staff.user;
 
@@ -35,16 +40,17 @@ export class StaffService {
   }
 
   async findAll(filterDto: GetStaffFilterDto, user: User): Promise<Staff[]> {
-    const { department, jobTitle, isActive, gender, status } = filterDto;
+    const { departmentId, positionId, isActive, gender, status } = filterDto;
     const query = this.staffRepository
       .createQueryBuilder('staff')
+      .leftJoinAndSelect('staff.position', 'position')
       .where('staff.userId = :userId', { userId: user.id })
       .andWhere(status ? 'staff.status = :status' : '1=1', { status })
       .andWhere(isActive ? 'staff.isActive = :isActive' : '1=1', { isActive })
       .andWhere(gender ? 'staff.gender = :gender' : '1=1', { gender });
 
-    this.addFilter(query, 'department', department);
-    this.addFilter(query, 'jobTitle', jobTitle);
+    this.addFilter(query, 'departmentId', departmentId);
+    this.addFilter(query, 'positionId', positionId);
 
     try {
       return await query.getMany();
@@ -56,6 +62,9 @@ export class StaffService {
   async findOne(id: number, user: User): Promise<Staff> {
     const staff = await this.staffRepository.findOne({
       where: { id, userId: user.id },
+      relations: {
+        position: true,
+      },
     });
     if (!staff) {
       throw new NotFoundException(`Staff with id: ${id} not found`);

@@ -1,8 +1,10 @@
+import { Staff } from './../../staff/entities/staff.entity';
 import { Department } from './../../department/entities/department.entity';
 import {
   Entity,
   Column,
   ManyToOne,
+  OneToMany,
   BaseEntity,
   CreateDateColumn,
   DeleteDateColumn,
@@ -18,13 +20,14 @@ export class Position extends BaseEntity {
   @Column()
   name: string;
 
-  @ManyToOne(() => Department, (department) => department.positions, {
-    eager: false,
-  })
-  department: string;
+  @ManyToOne(() => Department, (department) => department.positions)
+  department: Department | number;
 
-  // @Column()
-  // departmentId: number;
+  @Column()
+  departmentId: number;
+
+  @OneToMany(() => Staff, (staff) => staff.position)
+  staff: Staff[];
 
   @CreateDateColumn({ default: null })
   createdAt: Date;

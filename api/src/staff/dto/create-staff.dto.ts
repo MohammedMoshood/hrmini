@@ -31,10 +31,10 @@ export class CreateStaffDto {
   age: string;
 
   @IsNotEmpty()
-  department: string;
+  departmentId: number;
 
   @IsNotEmpty()
-  jobTitle: string;
+  positionId: number;
 
   @IsIn([Gender.MALE, Gender.FEMALE, Gender.OTHERS])
   gender: Gender;

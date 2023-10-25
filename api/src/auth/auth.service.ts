@@ -41,7 +41,6 @@ export class AuthService {
         message: 'Company Created Successfull',
       };
     } catch (error) {
-      console.log(error);
       if (error.code === 'ER_DUP_ENTRY') {
         throw new ConflictException(['Email already exists']);
       } else {

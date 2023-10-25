@@ -23,7 +23,6 @@ export class PositionService {
     position.department = department;
 
     try {
-      console.log(position);
       await this.positionRepository.save(position);
     } catch (error) {
       throw new InternalServerErrorException();
@@ -34,7 +33,11 @@ export class PositionService {
 
   async findAll(): Promise<Position[]> {
     try {
-      return await this.positionRepository.find();
+      return await this.positionRepository.find({
+        relations: {
+          staff: true,
+        },
+      });
     } catch (error) {
       throw new InternalServerErrorException();
     }
@@ -43,6 +46,9 @@ export class PositionService {
   async findOne(id: number): Promise<Position> {
     const position = await this.positionRepository.findOne({
       where: { id },
+      relations: {
+        staff: true,
+      },
     });
 
     if (!position) {

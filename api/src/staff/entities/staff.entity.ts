@@ -1,17 +1,20 @@
+import { Position } from './../../position/entities/postion.entity';
 import { Status } from '../enum/status.enum';
 import { Gender } from '../enum/gender.enum';
 import { User } from './../../auth/entities/user.entity';
 import {
   Column,
   Entity,
+  Unique,
   ManyToOne,
   DeleteDateColumn,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 
 @Entity()
+@Unique(['email'])
 export class Staff {
   @PrimaryGeneratedColumn()
   id: number;
@@ -23,7 +26,13 @@ export class Staff {
   userId: number;
 
   @Column()
-  department: string;
+  departmentId: number;
+
+  @Column()
+  positionId: number;
+
+  @ManyToOne(() => Position, (position) => position.staff)
+  position: Position;
 
   @Column()
   firstName: string;
@@ -42,9 +51,6 @@ export class Staff {
 
   @Column()
   age: string;
-
-  @Column()
-  jobTitle: string;
 
   @Column()
   gender: Gender;

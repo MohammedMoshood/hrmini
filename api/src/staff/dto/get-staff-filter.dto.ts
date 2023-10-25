@@ -5,11 +5,11 @@ import { IsOptional, IsIn, IsNotEmpty } from 'class-validator';
 export class GetStaffFilterDto {
   @IsOptional()
   @IsNotEmpty()
-  department: string;
+  departmentId: string;
 
   @IsOptional()
   @IsNotEmpty()
-  jobTitle: string;
+  positionId: string;
 
   @IsOptional()
   @IsNotEmpty()
